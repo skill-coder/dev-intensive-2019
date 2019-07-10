@@ -13,7 +13,7 @@ const val MINUTE = 60 * SECOND
 const val HOUR = 60 * MINUTE
 const val DAY = 24 * HOUR
 
-fun Date.add(value: Int, tu: TimeUnits): Date {
+fun Date.add(value: Int, tu: TimeUnits = TimeUnits.SECOND): Date {
     var time = this.time
     time += when (tu) {
         TimeUnits.SECOND -> value * SECOND
