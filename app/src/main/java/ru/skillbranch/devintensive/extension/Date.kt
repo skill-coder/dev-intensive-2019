@@ -2,15 +2,25 @@ package ru.skillbranch.devintensive.extension
 
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.TimeUnit
 
-fun Date.format(pattern: String="HH:mm:ss dd.MM.yy"):String{
+fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String {
     val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
     return dateFormat.format(this)
 }
-/*
-fun Date.add(value:Int,tu: TimeUnit):Date{
-    val cal = Calendar.getInstance()
-    cal.time = this
-    return cal.a
-}*/
+
+const val SECOND = 1000L
+const val MINUTE = 60 * SECOND
+const val HOUR = 60 * MINUTE
+const val DAY = 24 * HOUR
+
+fun Date.add(value: Int, tu: TimeUnits): Date {
+    var time = this.time
+    time += when (tu) {
+        TimeUnits.SECOND -> value * SECOND
+        TimeUnits.MINUTE -> value * MINUTE
+        TimeUnits.HOUR -> value * HOUR
+        TimeUnits.DAY -> value * DAY
+    }
+    this.time = time
+    return this
+}
