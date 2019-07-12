@@ -2,7 +2,9 @@ package ru.skillbranch.devintensive.extension
 
 import java.text.SimpleDateFormat
 import java.util.*
-
+enum class TimeUnits {
+    SECOND, MINUTE, HOUR, DAY
+}
 fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String {
     val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
     return dateFormat.format(this)
